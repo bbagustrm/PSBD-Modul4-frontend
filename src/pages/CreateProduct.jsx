@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { Label } from "../components/ui/label";
 
 const CreateProduct = () => {
     const navigate = useNavigate();
@@ -26,20 +30,26 @@ const CreateProduct = () => {
     };
 
     return (
-        <div>
-            <h2>Tambah Produk</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Nama Produk:</label>
-                <input type="text" name="nama" value={product.nama} onChange={handleChange} required />
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <Card className="w-full max-w-md p-6 shadow-lg">
+                <CardHeader>
+                    <CardTitle>Create Produk</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <Label>Nama Produk:</Label>
+                        <Input type="text" name="nama" onChange={handleChange} required />
 
-                <label>Stok:</label>
-                <input type="number" name="stok" value={product.stok} onChange={handleChange} required />
+                        <Label>Stok:</Label>
+                        <Input type="number" name="stok" onChange={handleChange} required />
 
-                <label>Link Gambar:</label>
-                <input type="text" name="link_gambar" value={product.link_gambar} onChange={handleChange} />
+                        <Label>Link Gambar:</Label>
+                        <Input type="text" name="link_gambar" onChange={handleChange} />
 
-                <button type="submit">Tambah Produk</button>
-            </form>
+                        <Button type="submit" className="w-full">Simpan Perubahan</Button>
+                    </form>
+                </CardContent>
+            </Card>
         </div>
     );
 };

@@ -1,7 +1,10 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import API from "../api/api";
 import { useNavigate } from "react-router-dom";
+import API from "../api/api";
+import {Card, CardHeader, CardContent, CardTitle} from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -21,13 +24,24 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-                <button type="submit">Login</button>
-            </form>
+        <div className="flex items-center justify-center min-h-screen">
+            <Card className="w-full max-w-sm">
+                <CardHeader>
+                    <h2 className="text-lg font-semibold">Login</h2>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <Button type="submit" className="w-full">Login</Button>
+                        <hr/>
+                        <Button variant="outline" className="w-full" onClick={() => navigate("/register")}>
+                            Register
+                        </Button>
+                    </form>
+
+                </CardContent>
+            </Card>
         </div>
     );
 };

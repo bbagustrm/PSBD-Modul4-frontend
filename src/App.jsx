@@ -5,15 +5,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import UpdateProduct from "./pages/UpdateProduct";
-import Navbar from "./components/Navbar";
 import CreateProduct from "./pages/CreateProduct.jsx";
 
+
 const App = () => {
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
     return (
         <Router>
-            <Navbar />
             <Routes>
                 <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Login />} />
                 <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
